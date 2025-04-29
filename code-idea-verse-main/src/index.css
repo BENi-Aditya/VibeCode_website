@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262.1 83.3% 57.8%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --color-bg: #fff;
+    --color-text: #18181b;
+  }
+
+  .dark {
+    --background: #0f1118;
+    --foreground: #fff;
+
+    --card: #1a1d29;
+    --card-foreground: #fff;
+
+    --popover: #1a1d29;
+    --popover-foreground: #fff;
+
+    --primary: #a78bfa;
+    --primary-foreground: #fff;
+
+    --secondary: #6366f1;
+    --secondary-foreground: #fff;
+
+    --muted: #1a1d29;
+    --muted-foreground: #fff;
+
+    --accent: #a78bfa;
+    --accent-foreground: #fff;
+
+    --destructive: #f472b6;
+    --destructive-foreground: #fff;
+
+    --border: #1a1d29;
+    --input: #1a1d29;
+    --ring: #a78bfa;
+
+    --sidebar-background: #1a1d29;
+    --sidebar-foreground: #fff;
+    --sidebar-primary: #a78bfa;
+    --sidebar-primary-foreground: #fff;
+    --sidebar-accent: #a78bfa;
+    --sidebar-accent-foreground: #fff;
+    --sidebar-border: #1a1d29;
+    --sidebar-ring: #a78bfa;
+
+    --color-bg: #0f1118;
+    --color-text: #fff;
+    --color-accent: #a78bfa;
+    --color-accent-2: #6366f1;
+    --color-accent-3: #f472b6;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  /* Custom scrollbar for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #9b87f5;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7E69AB;
+  }
+
+  .bg-vibecode-purple {
+    background-color: #a78bfa;
+  }
+  .dark .bg-vibecode-purple {
+    background-color: var(--color-accent);
+  }
+
+  .text-vibecode-purple {
+    color: #a78bfa;
+  }
+  .dark .text-vibecode-purple {
+    color: var(--color-accent);
+  }
+
+  .dark .bg-white, .dark .bg-white\/80, .dark .bg-gray-50 {
+    background: #1a1d29 !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+  }
+  .dark .example-bg {
+    background: #fff !important;
+  }
+  .dark .example-bg .bg-gray-50 {
+    background: #f9fafb !important;
+  }
+  .dark .example-bg p, 
+  .dark .example-bg .text-gray-900, 
+  .dark .example-bg .text-gray-800, 
+  .dark .example-bg .text-gray-700, 
+  .dark .example-bg .text-gray-600, 
+  .dark .example-bg .text-gray-500 {
+    color: #111827 !important;
+  }
+  .dark .shadow-xl {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 
+                0 0 1px rgba(255, 255, 255, 0.1), 
+                0 0 1px rgba(167, 139, 250, 0.2) !important;
+  }
+  .dark body, .dark .text-gray-700, .dark .text-gray-800, .dark .text-gray-900, .dark .text-black, .dark .text-gray-600, .dark .text-gray-500, .dark .text-gray-400, .dark .text-gray-300, .dark .text-gray-200, .dark .text-gray-100, .dark p, .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6, .dark span, .dark div, .dark li, .dark a, .dark label, .dark th, .dark td, .dark strong, .dark em {
+    color: #fff !important;
+  }
+
+  .navbar-blur {
+    background: #fff;
+    backdrop-filter: blur(8px);
+  }
+  .dark .navbar-blur {
+    background: rgba(15, 17, 24, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .logo-gradient-text {
+    background: linear-gradient(90deg, #a78bfa 0%, #6366f1 50%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .dark .logo-gradient-text {
+    text-shadow: 0 0 25px rgba(167, 139, 250, 0.5);
+  }
+
+  .step-circle, .step-circle svg {
+    background: #fff !important;
+    color: #a78bfa !important;
+    fill: #a78bfa !important;
+    border: 1px solid #a78bfa !important;
+  }
+  .dark .step-circle, .dark .step-circle svg {
+    background: #fff !important;
+    color: #a78bfa !important;
+    fill: #a78bfa !important;
+    border: 1px solid #a78bfa !important;
+  }
+
+  .dark body {
+    background: linear-gradient(to bottom, #0f1118, #171923);
+  }
+
+  .dark .button-primary {
+    background: linear-gradient(135deg, #a78bfa, #6366f1) !important;
+    box-shadow: 0 4px 12px rgba(167, 139, 250, 0.3) !important;
+  }
+
+  .card-hover {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .dark .card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 
+                0 0 2px rgba(255, 255, 255, 0.1), 
+                0 0 2px rgba(167, 139, 250, 0.3) !important;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-vibecode-purple to-vibecode-darkPurple text-transparent bg-clip-text;
+  }
+  
+  .feature-card {
+    @apply p-6 rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300;
+  }
+  
+  .button-primary {
+    @apply bg-vibecode-purple hover:bg-vibecode-darkPurple text-white font-medium py-3 px-6 rounded-md transition-colors duration-300;
+  }
+  
+  .button-secondary {
+    @apply bg-white border border-vibecode-purple text-vibecode-purple hover:bg-vibecode-light font-medium py-3 px-6 rounded-md transition-colors duration-300;
+  }
+
+  .pulsating-circle {
+    @apply relative inline-block w-12 h-12 md:w-16 md:h-16 bg-vibecode-purple rounded-full animate-pulse-light;
+  }
+}
