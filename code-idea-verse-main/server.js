@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'dist')));
+app.use('/Logo', express.static(path.join(__dirname, 'public/Logo')));
 
 // Path to Excel file - use an explicit relative path from project root
 const EXCEL_FILE_PATH = path.join(__dirname, './Waitlist.xlsx');
