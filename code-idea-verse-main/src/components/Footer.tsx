@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12">
           <div>
             <div className="flex items-center mb-6">
-              <img src="/images/logo.png" alt="VibeCode Logo" className="w-8 h-8 mr-2 rounded-md object-cover bg-white" />
+              <img src="/Logo/logo.png" alt="VibeCode Logo" className="w-8 h-8 mr-2 rounded-md object-cover bg-white" />
               <span className="text-xl font-bold logo-gradient-text">VibeCode</span>
             </div>
             <p className="text-gray-600">

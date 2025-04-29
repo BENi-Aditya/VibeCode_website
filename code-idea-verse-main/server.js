@@ -16,8 +16,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// Path to Excel file - use a relative path that works on both local and Render
-const EXCEL_FILE_PATH = path.join(__dirname, 'Waitlist.xlsx');
+// Path to Excel file - use an explicit relative path from project root
+const EXCEL_FILE_PATH = path.join(__dirname, './Waitlist.xlsx');
 
 // API endpoint to handle waitlist submissions
 app.post('/api/waitlist', (req, res) => {

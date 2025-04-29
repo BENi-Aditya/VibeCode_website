@@ -12,7 +12,7 @@ const Navbar = () => {
     <nav className="w-full py-4 px-4 md:px-8 navbar-blur fixed top-0 z-50">
       <div className="container max-w-7xl mx-auto flex justify-between items-center relative">
         <a href="/" className="flex items-center">
-          <img src="/images/logo.png" alt="VibeCode Logo" className="w-10 h-10 mr-2 rounded-md object-cover bg-white" />
+          <img src="/Logo/logo.png" alt="VibeCode Logo" className="w-10 h-10 mr-2 rounded-md object-cover bg-white" />
           <span className="text-xl font-bold logo-gradient-text">VibeCode</span>
         </a>
         
