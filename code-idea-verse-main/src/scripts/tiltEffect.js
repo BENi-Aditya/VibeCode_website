@@ -155,3 +155,35 @@ export function initParticles() {
   
   drawParticles();
 }
+
+// Terminal tilt effect - special effect for the terminal content
+export function initTerminalTilt() {
+  const terminals = document.querySelectorAll('.terminal-content');
+  
+  terminals.forEach(terminal => {
+    const container = terminal.closest('.terminal-container');
+    if (!container) return;
+    
+    container.addEventListener('mousemove', (e) => {
+      const rect = container.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      
+      // Calculate position relative to center (in -1 to 1 range)
+      const xPos = (mouseX / rect.width - 0.5) * 2;
+      const yPos = (mouseY / rect.height - 0.5) * 2;
+      
+      // Apply subtle movement to the terminal content
+      terminal.style.transform = `translate3d(${xPos * 5}px, ${yPos * 5}px, 0)`;
+      
+      // Add subtle shadow effect that follows the mouse
+      terminal.style.boxShadow = `${-xPos * 5}px ${-yPos * 5}px 15px rgba(0, 0, 0, 0.1) inset`;
+    });
+    
+    container.addEventListener('mouseleave', () => {
+      // Reset position when mouse leaves
+      terminal.style.transform = 'translate3d(0, 0, 0)';
+      terminal.style.boxShadow = 'none';
+    });
+  });
+}

@@ -27,7 +27,7 @@ const CallToAction = () => {
               <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700">
                 <div className="flex mb-4 items-center gap-2">
                   <div className="h-8 w-8 rounded-full bg-white dark:bg-gray-900 flex items-center justify-center">
-                    <img src="/images/logo.png" alt="VibeCode Logo" className="w-6 h-6 rounded-full object-cover" />
+                    <img src="/Logo/logo.png" alt="VibeCode Logo" className="w-6 h-6 rounded-full object-cover" />
                   </div>
                   <div className="text-gray-900 dark:text-white font-medium">VibeCoding in Action</div>
                 </div>

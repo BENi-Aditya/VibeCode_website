@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { useWaitlist } from './WaitlistContext';
 
 type WaitlistFormData = {
   name: string;
@@ -16,6 +17,7 @@ type WaitlistFormData = {
 
 // Accept isOpen and setIsOpen as props for context control
 export function WaitlistForm({ isOpen, setIsOpen }: { isOpen?: boolean, setIsOpen?: (open: boolean) => void }) {
+  const { closeWaitlist } = useWaitlist();
   const [formData, setFormData] = useState<WaitlistFormData>({
     name: '',
     email: '',
@@ -62,7 +64,13 @@ export function WaitlistForm({ isOpen, setIsOpen }: { isOpen?: boolean, setIsOpe
           useCase: '',
           review: ''
         });
-        setTimeout(() => setIsOpen && setIsOpen(false), 3000);
+        setTimeout(() => {
+          if (setIsOpen) {
+            setIsOpen(false);
+          } else {
+            closeWaitlist();
+          }
+        }, 3000);
       } else {
         setError(data.message || 'Something went wrong. Please try again.');
       }
@@ -86,7 +94,14 @@ export function WaitlistForm({ isOpen, setIsOpen }: { isOpen?: boolean, setIsOpe
           Join Waitlist
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm">
+        <button 
+          onClick={() => effectiveSetOpen(false)} 
+          className="absolute right-4 top-4 rounded-full h-8 w-8 flex items-center justify-center bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 z-50"
+          aria-label="Close"
+        >
+          ✕
+        </button>
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center">Join VibeCode Waitlist</DialogTitle>
         </DialogHeader>
@@ -104,83 +119,88 @@ export function WaitlistForm({ isOpen, setIsOpen }: { isOpen?: boolean, setIsOpe
               </div>
             )}
             
-            <div>
-              <Label htmlFor="name">Full Name*</Label>
-              <Input
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="text-gray-900 dark:text-white"
-                placeholder=""
-              />
-            </div>
-            
-            <div>
-              <Label htmlFor="email">Email*</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="text-gray-900 dark:text-white"
-                placeholder=""
-              />
-            </div>
-            
-            <div>
-              <Label htmlFor="phone">Phone Number</Label>
-              <Input
-                id="phone"
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleChange}
-                className="text-gray-900 dark:text-white"
-                placeholder=""
-              />
-            </div>
-            
-            <div>
-              <Label htmlFor="country">Country</Label>
-              <Input
-                id="country"
-                name="country"
-                value={formData.country}
-                onChange={handleChange}
-                className="text-gray-900 dark:text-white"
-                placeholder=""
-              />
-            </div>
-            
-            <div>
-              <Label htmlFor="useCase">How do you plan to use VibeCode?*</Label>
-              <Textarea
-                id="useCase"
-                name="useCase"
-                value={formData.useCase}
-                onChange={handleChange}
-                rows={3}
-                required
-                placeholder="Describe your coding needs, projects you want to build, or problems you're looking to solve."
-              />
-            </div>
-            
-            <div>
-              <Label htmlFor="review">
-                Your honest feedback on the VibeCode concept (optional)
-              </Label>
-              <Textarea
-                id="review"
-                name="review"
-                value={formData.review}
-                onChange={handleChange}
-                rows={3}
-                placeholder="Share your thoughts on the VibeCode concept. What excites you? What concerns do you have?"
-              />
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="name" className="text-right">
+                  Name
+                </Label>
+                <Input
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="Your name"
+                  className="col-span-3 bg-white/70 dark:bg-gray-800/50 dark:text-white/90 placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="email" className="text-right">
+                  Email
+                </Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="Your email"
+                  className="col-span-3 bg-white/70 dark:bg-gray-800/50 dark:text-white/90 placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="phone" className="text-right">
+                  Phone
+                </Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Optional"
+                  className="col-span-3 bg-white/70 dark:bg-gray-800/50 dark:text-white/90 placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="country" className="text-right">
+                  Country
+                </Label>
+                <Input
+                  id="country"
+                  name="country"
+                  value={formData.country}
+                  onChange={handleChange}
+                  placeholder="Optional"
+                  className="col-span-3 bg-white/70 dark:bg-gray-800/50 dark:text-white/90 placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="useCase" className="text-right">
+                  Use Case
+                </Label>
+                <Textarea
+                  id="useCase"
+                  name="useCase"
+                  value={formData.useCase}
+                  onChange={handleChange}
+                  placeholder="How would you use VibeCode? (Optional)"
+                  className="col-span-3 bg-white/70 dark:bg-gray-800/50 dark:text-white/90 placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="review" className="text-right">
+                  Review
+                </Label>
+                <Textarea
+                  id="review"
+                  name="review"
+                  value={formData.review}
+                  onChange={handleChange}
+                  placeholder="Your honest feedback on the VibeCode concept (optional)"
+                  className="col-span-3 bg-white/70 dark:bg-gray-800/50 dark:text-white/90 placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                />
+              </div>
             </div>
             
             <Button type="submit" disabled={isSubmitting} className="w-full">

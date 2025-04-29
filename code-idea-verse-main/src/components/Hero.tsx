@@ -94,6 +94,21 @@ const ExampleProgress = ({ idx }: { idx: number }) => {
 const Hero = () => {
   const [activeExample, setActiveExample] = useState(0);
   const { openWaitlist } = useWaitlist();
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    // Detect if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Initial check
+    checkMobile();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   useEffect(() => {
     // Set current example in window for the demo
@@ -110,41 +125,52 @@ const Hero = () => {
   }, [activeExample]);
 
   return (
-    <section className="pt-32 pb-20 px-4 md:px-8">
-      <div className="container max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <section className="pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-8">
+      <div className="container max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
         <div className="flex flex-col space-y-2">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight -ml-1 hero-heading">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight -ml-1 hero-heading">
             <span className="logo-gradient-text">
               VibeCode.
             </span>
           </h1>
-          <p className="text-xl text-gray-900 dark:text-gray-200 md:pr-12 font-medium tracking-wide ml-1 mb-12">
+          <p className="text-lg md:text-xl text-gray-900 dark:text-gray-200 md:pr-12 font-medium tracking-wide ml-1 mb-6 md:mb-12">
             The fastest way to turn your ideas into working software. Describe what you want, and VibeCode will build it for you.
           </p>
           <div className="flex flex-col items-start ml-1">
-            <div className="flex flex-row gap-4 mt-4">
-              <Button className="button-primary pulse-glow" onClick={openWaitlist}>
+            <div className={`flex ${isMobile ? 'flex-col w-full' : 'flex-row'} gap-4 mt-2 md:mt-4`}>
+              <Button 
+                className={`button-primary pulse-glow ${isMobile ? 'w-full' : ''}`} 
+                onClick={openWaitlist}
+              >
                 Join Waitlist
               </Button>
-              <LearnMoreModal />
+              <div className={isMobile ? 'w-full' : ''}>
+                <LearnMoreModal 
+                  trigger={
+                    <Button className={`bg-white text-gray-900 hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 font-medium py-3 px-6 ${isMobile ? 'w-full' : ''}`}>
+                      Learn More
+                    </Button>
+                  }
+                />
+              </div>
             </div>
-            <div className="flex flex-row gap-6 mt-8">
+            <div className="flex flex-row gap-6 mt-6 md:mt-8">
               <a href="https://github.com/BENi-Aditya" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
                 className="rounded-full bg-gray-100 dark:bg-gray-800 shadow-lg p-3 hover:bg-purple-600/90 dark:hover:bg-purple-500/80 transition-colors flex items-center justify-center">
-                <Github className="h-6 w-6 text-gray-700 dark:text-gray-200" />
+                <Github className="h-5 w-5 md:h-6 md:w-6 text-gray-700 dark:text-gray-200" />
               </a>
               <a href="https://instagram.com/aditya.beni_" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
                 className="rounded-full bg-gray-100 dark:bg-gray-800 shadow-lg p-3 hover:bg-pink-500/90 dark:hover:bg-pink-500/80 transition-colors flex items-center justify-center">
-                <Instagram className="h-6 w-6 text-gray-700 dark:text-gray-200" />
+                <Instagram className="h-5 w-5 md:h-6 md:w-6 text-gray-700 dark:text-gray-200" />
               </a>
               <a href="https://youtube.com/BENi-Aditya" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
                 className="rounded-full bg-gray-100 dark:bg-gray-800 shadow-lg p-3 hover:bg-red-500/90 dark:hover:bg-red-500/80 transition-colors flex items-center justify-center">
-                <Youtube className="h-6 w-6 text-gray-700 dark:text-gray-200" />
+                <Youtube className="h-5 w-5 md:h-6 md:w-6 text-gray-700 dark:text-gray-200" />
               </a>
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-6 md:gap-8 mt-8 md:mt-0">
           <WorkspaceDemo activeExample={activeExample} />
         </div>
       </div>

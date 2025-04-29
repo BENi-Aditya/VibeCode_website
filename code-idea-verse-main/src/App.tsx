@@ -13,15 +13,43 @@ const queryClient = new QueryClient();
 
 function App() {
   useEffect(() => {
+    // Check system preference for dark/light mode and apply it
+    if (typeof window !== 'undefined') {
+      const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (prefersDarkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      
+      // Listen for changes in system preference
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const handleChange = (e: MediaQueryListEvent) => {
+        if (e.matches) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      };
+      
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+  }, []);
+
+  useEffect(() => {
     // Initialize all the cool 3D effects
     if (typeof window !== 'undefined') {
       // Import and initialize the effects
-      import('./scripts/tiltEffect').then(({ initTiltEffect, initParticles }) => {
+      import('./scripts/tiltEffect').then(({ initTiltEffect, initParticles, initTerminalTilt }) => {
         // Init tilt effect for cards
         initTiltEffect();
         
         // Init floating particles
         initParticles();
+        
+        // Init terminal tilt effect
+        initTerminalTilt();
         
         // Custom cursor effect for desktop only (mobile devices use native touch handling)
         if (window.matchMedia('(min-width: 768px)').matches) {

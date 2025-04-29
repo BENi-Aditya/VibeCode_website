@@ -2,6 +2,7 @@ import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { X, Github, Instagram, Youtube } from 'lucide-react';
+import { useWaitlist } from './WaitlistContext';
 
 interface LearnMoreModalProps {
   children?: React.ReactNode;
@@ -12,6 +13,8 @@ const LearnMoreModal: React.FC<LearnMoreModalProps> = ({
   children, 
   trigger = <Button className="bg-white text-gray-900 hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 font-medium py-3 px-6">Learn More</Button> 
 }) => {
+  const { openWaitlist } = useWaitlist();
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -92,6 +95,22 @@ const LearnMoreModal: React.FC<LearnMoreModalProps> = ({
                     <span>BENi-Aditya</span>
                   </a>
                 </div>
+              </div>
+              
+              <div className="mt-8 flex justify-center">
+                <Button 
+                  className="button-primary pulse-glow px-8 py-2"
+                  onClick={() => {
+                    openWaitlist();
+                    // Close the learn more modal when opening waitlist
+                    const closeButton = document.querySelector('[data-dialog-close]');
+                    if (closeButton instanceof HTMLElement) {
+                      closeButton.click();
+                    }
+                  }}
+                >
+                  Get Started
+                </Button>
               </div>
             </div>
           </div>

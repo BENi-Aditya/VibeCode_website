@@ -57,6 +57,21 @@ const WorkspaceDemo: React.FC<WorkspaceDemoProps> = ({ activeExample = 0 }) => {
   const [progress, setProgress] = useState(60);
   const [exampleIndex, setExampleIndex] = useState(activeExample);
   const example = PROJECT_EXAMPLES[exampleIndex % PROJECT_EXAMPLES.length];
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Check if the device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Initial check
+    checkMobile();
+    
+    // Listen for resize events
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   // Update progress animation
   useEffect(() => {
@@ -72,66 +87,79 @@ const WorkspaceDemo: React.FC<WorkspaceDemoProps> = ({ activeExample = 0 }) => {
   
   // Optionally cycle through examples
   useEffect(() => {
-    const interval = setInterval(() => {
-      setExampleIndex(prev => (prev + 1) % PROJECT_EXAMPLES.length);
-    }, 8000);
-    
-    return () => clearInterval(interval);
-  }, []);
+    if (typeof window !== 'undefined' && 'currentExampleIdx' in window) {
+      setExampleIndex((window as any).currentExampleIdx);
+    }
+  }, [activeExample]);
+  
+  // Initialize terminal tilt effect
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !isMobile) {
+      import('../scripts/tiltEffect').then(({ initTerminalTilt }) => {
+        // Small delay to ensure DOM is ready
+        setTimeout(() => {
+          initTerminalTilt();
+        }, 100);
+      });
+    }
+  }, [isMobile]);
   
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800">
-      <div className="p-6 space-y-6">
-        {/* Workspace Header */}
-        <div className="flex items-center space-x-4">
-          <div className="h-12 w-12 rounded-full bg-purple-500/20 flex items-center justify-center">
-            <div className="text-purple-600 dark:text-white text-sm font-mono">{"{ ~ }"}</div>
-          </div>
-          <div className="text-gray-900 dark:text-white text-xl font-medium">Ideation Workspace</div>
-        </div>
-        
-        {/* Prompt Area */}
-        <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-5 shadow-inner">
-          <p className="text-gray-900 dark:text-white text-lg">
-            {example.prompt}
-          </p>
-        </div>
-        
-        {/* Divider */}
-        <div className="h-px w-full bg-gray-200 dark:bg-gray-700"></div>
-        
-        {/* Progress Area */}
-        <div className="space-y-4">
-          <h3 className="text-gray-900 dark:text-white text-lg">Setting up your environment...</h3>
-          
-          {/* Progress Bar */}
-          <div className="bg-gray-200 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
-            <div 
-              className="bg-gradient-to-r from-purple-500 to-indigo-500 h-full rounded-full"
-              style={{ width: `${progress}%`, transition: 'width 0.5s ease-in-out' }}
-            ></div>
+    <div className="terminal-container bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg">
+      <div className="p-4 md:p-6">
+        <div className="flex flex-col">
+          {/* Terminal Header */}
+          <div className="flex items-center justify-between bg-gray-800 dark:bg-gray-900 rounded-t-lg p-2">
+            <div className="flex space-x-2">
+              <div className="h-3 w-3 rounded-full bg-red-500"></div>
+              <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
+              <div className="h-3 w-3 rounded-full bg-green-500"></div>
+            </div>
+            <div className="text-xs text-white font-mono">vibecode ~ terminal</div>
+            <div className="w-16"></div> {/* Empty space to balance the header */}
           </div>
           
-          {/* Status List */}
-          <ul className="space-y-2">
-            {example.steps.map((step, i) => (
-              <li key={i} className="flex items-center text-gray-900 dark:text-white">
-                {step.completed ? (
-                  <span className="text-green-500 mr-2">✓</span>
-                ) : (
-                  <span className="text-purple-500 mr-2">•</span>
-                )}
-                <span className={step.completed ? "text-gray-500 dark:text-gray-400" : "text-gray-900 dark:text-white"}>
-                  {step.text}
-                </span>
-              </li>
-            ))}
-          </ul>
+          {/* Terminal Content - with special tilt effect */}
+          <div className="terminal-content bg-gray-900 text-gray-100 p-4 font-mono text-sm md:text-base rounded-b-lg overflow-hidden transition-transform duration-200">
+            <div className="mb-5 text-green-400">$ vibecode generate</div>
+            
+            <div className="mb-5 text-green-500">&gt; Prompt: {example.prompt}</div>
+            
+            <div className="mb-5 text-gray-400">&gt; Setting up environment...</div>
+            
+            {/* Progress Bar */}
+            <div className="w-full bg-gray-700 rounded-full h-2 mb-6">
+              <div
+                className="bg-gradient-to-r from-purple-500 to-indigo-500 h-2 rounded-full transition-all duration-300"
+                style={{ width: `${progress}%` }}
+              ></div>
+            </div>
+            
+            {/* Setup Steps - Better contrast in dark mode */}
+            <ul className={`space-y-3 ${isMobile ? 'text-xs' : 'text-sm'}`}>
+              {example.steps.map((step, i) => (
+                <li key={i} className="flex items-center">
+                  {step.completed ? (
+                    <span className="text-green-500 dark:text-green-400 mr-2">✓</span>
+                  ) : (
+                    <span className="text-yellow-500 dark:text-yellow-400 mr-2">•</span>
+                  )}
+                  <span className={`${
+                    step.completed 
+                      ? 'text-gray-300 dark:text-gray-300' 
+                      : 'text-yellow-400 dark:text-yellow-300'
+                    } font-mono`}>
+                    {step.text}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         
-        {/* Bottom Message */}
-        <p className="text-gray-500 dark:text-gray-400 text-center pt-3">
-          VibeCode is setting up everything you need for {example.type === "webapp" ? "web development" : 
+        {/* Bottom Message - Clear and readable */}
+        <p className={`text-gray-600 dark:text-gray-400 text-center pt-3 ${isMobile ? 'text-xs' : 'text-sm'}`}>
+          VibeCode is setting up everything for {example.type === "webapp" ? "web development" : 
             example.type === "game" ? "game development" : 
             example.type === "mobile" ? "mobile app development" :
             example.type === "ai" ? "AI development" : "data analysis"}.
