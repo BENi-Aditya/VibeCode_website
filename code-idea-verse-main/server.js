@@ -9,15 +9,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// Path to Excel file
-const EXCEL_FILE_PATH = '/Users/tripathd/Downloads/Manual Library/Projects/VibeCode_website/Waitlist.xlsx';
+// Path to Excel file - use a relative path that works on both local and Render
+const EXCEL_FILE_PATH = path.join(__dirname, 'Waitlist.xlsx');
 
 // API endpoint to handle waitlist submissions
 app.post('/api/waitlist', (req, res) => {
@@ -81,5 +81,5 @@ app.get('*', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
