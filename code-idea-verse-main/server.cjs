@@ -8,7 +8,15 @@ const app = express();
 const PORT = 3001;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:8080', 'https://vibecode.org.in'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+  credentials: false
+}));
+
+// Handle preflight requests
+app.options('/api/waitlist', cors());
 app.use(express.json());
 
 // Root route
@@ -17,7 +25,7 @@ app.get('/', (req, res) => {
 });
 
 // Path to Excel file
-const EXCEL_FILE_PATH = '/Users/tripathd/Downloads/Manual Library/Projects/VibeCode_website/Waitlist(AI).xlsx';
+const EXCEL_FILE_PATH = '/Users/tripathd/Downloads/Manual Library/Projects/VibeCode_website/code-idea-verse-main/Waitlist.xlsx';
 
 // API endpoint to handle waitlist submissions
 app.post('/api/waitlist', (req, res) => {

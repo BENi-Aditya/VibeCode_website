@@ -44,7 +44,8 @@ export function WaitlistForm({ isOpen, setIsOpen }: { isOpen?: boolean, setIsOpe
     setError('');
     
     try {
-      const response = await fetch('http://localhost:3001/api/waitlist', {
+      const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:3001/api/waitlist' : 'https://vibecode.org.in/api/waitlist';
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
