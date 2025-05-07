@@ -13,16 +13,26 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173'],
-  methods: ['POST'],
-  allowedHeaders: ['Content-Type']
+  origin: ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173', 'https://vibecode.org.in'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+  credentials: false
 }));
+
+// Handle preflight requests
+app.options('/api/waitlist', cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/Logo', express.static(path.join(__dirname, 'public/Logo')));
 
 // Path to Excel file - use an explicit relative path from project root
-const EXCEL_FILE_PATH = path.join(__dirname, './Waitlist.xlsx');
+const EXCEL_FILE_PATH = path.join(__dirname, 'Waitlist.xlsx');
+
+// Ensure the Excel file directory exists
+const excelDir = path.dirname(EXCEL_FILE_PATH);
+if (!fs.existsSync(excelDir)) {
+  fs.mkdirSync(excelDir, { recursive: true });
+}
 
 // API endpoint to handle waitlist submissions
 app.post('/api/waitlist', (req, res) => {
