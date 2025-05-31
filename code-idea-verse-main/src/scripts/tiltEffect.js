@@ -158,32 +158,26 @@ export function initParticles() {
 
 // Terminal tilt effect - special effect for the terminal content
 export function initTerminalTilt() {
-  const terminals = document.querySelectorAll('.terminal-content');
-  
-  terminals.forEach(terminal => {
-    const container = terminal.closest('.terminal-container');
-    if (!container) return;
-    
+  const containers = document.querySelectorAll('.terminal-container');
+
+  containers.forEach(container => {
+    // Add smooth transition for transform and box-shadow
+    container.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
     container.addEventListener('mousemove', (e) => {
       const rect = container.getBoundingClientRect();
       const mouseX = e.clientX - rect.left;
       const mouseY = e.clientY - rect.top;
-      
       // Calculate position relative to center (in -1 to 1 range)
       const xPos = (mouseX / rect.width - 0.5) * 2;
       const yPos = (mouseY / rect.height - 0.5) * 2;
-      
-      // Apply subtle movement to the terminal content
-      terminal.style.transform = `translate3d(${xPos * 5}px, ${yPos * 5}px, 0)`;
-      
-      // Add subtle shadow effect that follows the mouse
-      terminal.style.boxShadow = `${-xPos * 5}px ${-yPos * 5}px 15px rgba(0, 0, 0, 0.1) inset`;
+      // Apply subtle movement and tilt to the entire terminal container
+      container.style.transform = `perspective(1000px) rotateX(${yPos * 8}deg) rotateY(${-xPos * 8}deg) scale3d(1.03, 1.03, 1.03)`;
+      container.style.boxShadow = `${-xPos * 10}px ${-yPos * 10}px 40px 0 rgba(80, 80, 120, 0.15)`;
     });
-    
     container.addEventListener('mouseleave', () => {
       // Reset position when mouse leaves
-      terminal.style.transform = 'translate3d(0, 0, 0)';
-      terminal.style.boxShadow = 'none';
+      container.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      container.style.boxShadow = '';
     });
   });
 }

@@ -23,13 +23,11 @@ const Navbar = () => {
             <a href="#how-it-works" className="text-gray-900 hover:text-vibecode-purple transition-colors">How It Works</a>
             <a href="#about" className="text-gray-900 hover:text-vibecode-purple transition-colors">About</a>
           </div>
-          
-          <Button 
-            className="button-primary"
-            onClick={openWaitlist}
-          >
-            Join Waitlist
-          </Button>
+          <a href="https://vibecode-mvp.onrender.com" target="_blank" rel="noopener noreferrer">
+            <Button className="button-primary">
+              Try Now
+            </Button>
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -67,12 +65,11 @@ const Navbar = () => {
             >
               About
             </a>
-            <Button 
-              className="button-primary w-full"
-              onClick={openWaitlist}
-            >
-              Join Waitlist
-            </Button>
+            <a href="https://vibecode-mvp.onrender.com" target="_blank" rel="noopener noreferrer">
+              <Button className="button-primary w-full">
+                Try Now
+              </Button>
+            </a>
           </div>
         </div>
       )}

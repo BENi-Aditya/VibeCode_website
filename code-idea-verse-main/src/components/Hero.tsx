@@ -136,23 +136,50 @@ const Hero = () => {
           <p className="text-lg md:text-xl text-gray-900 dark:text-gray-200 md:pr-12 font-medium tracking-wide ml-1 mb-6 md:mb-12">
             The fastest way to turn your ideas into working software. Describe what you want, and VibeCode will build it for you.
           </p>
-          <div className="flex flex-col items-start ml-1">
-            <div className={`flex ${isMobile ? 'flex-col w-full' : 'flex-row'} gap-4 mt-2 md:mt-4`}>
+          <div className="flex flex-col items-start ml-1 w-full">
+            <div className={`flex w-full ${isMobile ? 'flex-col' : 'flex-row'} gap-4 mt-2 md:mt-4`}>
               <Button 
-                className={`button-primary pulse-glow ${isMobile ? 'w-full' : ''}`} 
+                className={`button-primary pulse-glow ${isMobile ? 'w-full' : 'w-1/2'} font-medium py-3 px-6`} 
                 onClick={openWaitlist}
               >
                 Join Waitlist
               </Button>
-              <div className={isMobile ? 'w-full' : ''}>
+              <div className={isMobile ? 'w-full' : 'w-1/2'}>
                 <LearnMoreModal 
                   trigger={
-                    <Button className={`bg-white text-gray-900 hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 font-medium py-3 px-6 ${isMobile ? 'w-full' : ''}`}>
+                    <Button className={`bg-white text-gray-900 hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 font-medium py-3 px-6 w-full`}>
                       Learn More
                     </Button>
                   }
                 />
               </div>
+            </div>
+            <div className={`w-full ${isMobile ? 'mt-4' : 'mt-8'}`}> 
+              <a 
+                href="https://vibecode-mvp.onrender.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block relative"
+              >
+                <Button 
+                  className={`mvp-button-pulse w-full font-medium py-3 px-6 text-white relative overflow-hidden`}
+                >
+                  Try Now (MVP)
+                  {/* Under Construction Band */}
+                  <span
+                    className="absolute top-2 right-[-40px] rotate-12 z-20 px-2 py-0.5 text-xs font-bold tracking-wider text-black bg-yellow-400 border-2 border-black shadow-md select-none pointer-events-none construction-band"
+                    style={{
+                      backgroundImage: 'repeating-linear-gradient(135deg, #FFD600 0 10px, #222 10px 20px)',
+                      color: '#222',
+                      borderRadius: '4px',
+                      letterSpacing: '0.05em',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.10)'
+                    }}
+                  >
+                    🚧 UNDER CONSTRUCTION
+                  </span>
+                </Button>
+              </a>
             </div>
             <div className="flex flex-row gap-6 mt-6 md:mt-8">
               <a href="https://github.com/BENi-Aditya" target="_blank" rel="noopener noreferrer" aria-label="GitHub"

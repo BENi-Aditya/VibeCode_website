@@ -11,16 +11,15 @@ const CallToAction = () => {
         <div className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-xl">
           <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold mb-4">Ready to <span className="gradient-text">Transform</span> Your Coding?</h2>
+              <h2 className="text-3xl font-bold mb-4">Ready to <span className="gradient-text">Try Now?</span></h2>
               <p className="text-gray-700 dark:text-gray-300 mb-8">
-                Join the VibeCode waitlist and be among the first to experience the future of no-code software development through natural language.
+                Experience VibeCode instantly—click below to try the MVP live and see what you can build!
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-vibecode-purple text-white hover:bg-vibecode-purple/90 font-medium py-3 px-6" onClick={openWaitlist}>
-                  Join Waitlist
+              <a href="https://vibecode-mvp.onrender.com" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-vibecode-purple text-white hover:bg-vibecode-purple/90 font-medium py-3 px-6">
+                  Try Now
                 </Button>
-                <LearnMoreModal />
-              </div>
+              </a>
             </div>
             <div className="relative">
               <div className="absolute -z-10 inset-0 bg-gradient-to-br from-purple-500/5 to-indigo-500/5 rounded-2xl blur-xl"></div>

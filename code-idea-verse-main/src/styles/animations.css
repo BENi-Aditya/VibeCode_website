@@ -5,6 +5,12 @@
   100% { box-shadow: 0 0 5px rgba(167, 139, 250, 0.3), 0 0 10px rgba(167, 139, 250, 0.2); }
 }
 
+@keyframes mvp-button-pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.7); }
+  50% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(167, 139, 250, 0.4); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.7); }
+}
+
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
@@ -130,4 +136,33 @@
 
 .dark .bg-gray-50 {
   background-color: rgba(26, 29, 41, 0.5) !important;
+}
+
+.mvp-button-pulse {
+  animation: mvp-button-pulse 2s infinite;
+  background: linear-gradient(135deg, #a78bfa, #6366f1) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.mvp-button-pulse::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
 }

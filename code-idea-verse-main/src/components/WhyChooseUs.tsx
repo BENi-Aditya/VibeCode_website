@@ -138,14 +138,16 @@ const WhyChooseUs = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-indigo-500/5 -z-10 rounded-xl transform rotate-1"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 -z-10 rounded-xl transform -rotate-1"></div>
           <div className="py-12 px-8 rounded-xl bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-100 dark:border-gray-800 relative z-10">
-            <h3 className="text-2xl font-bold mb-4">Ready to build your vision?</h3>
+            <h3 className="text-2xl font-bold mb-4">Ready to <span className="gradient-text">Try Now?</span></h3>
             <p className="text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              Join thousands of creators, entrepreneurs, and developers who are using VibeCode to bring their software ideas to life faster than ever before.
+              Experience VibeCode instantly—click below to try the MVP live and see what you can build!
             </p>
-            <Button className="button-primary pulse-glow relative" onClick={openWaitlist}>
-              <span className="relative z-10">Join the Waitlist</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-md opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-            </Button>
+            <a href="https://vibecode-mvp.onrender.com" target="_blank" rel="noopener noreferrer">
+              <Button className="button-primary pulse-glow relative">
+                <span className="relative z-10">Try Now</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-md opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+              </Button>
+            </a>
           </div>
         </div>
       </div>
