@@ -142,7 +142,7 @@ const WhyChooseUs = () => {
             <p className="text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Experience VibeCode instantly—click below to try the MVP live and see what you can build!
             </p>
-            <a href="https://vibecode-mvp.onrender.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://vibe-code-mvp-five.vercel.app" target="_blank" rel="noopener noreferrer">
               <Button className="button-primary pulse-glow relative">
                 <span className="relative z-10">Try Now</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-md opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>

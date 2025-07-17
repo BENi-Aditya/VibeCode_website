@@ -23,7 +23,7 @@ const Navbar = () => {
             <a href="#how-it-works" className="text-gray-900 hover:text-vibecode-purple transition-colors">How It Works</a>
             <a href="#about" className="text-gray-900 hover:text-vibecode-purple transition-colors">About</a>
           </div>
-          <a href="https://vibecode-mvp.onrender.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://vibe-code-mvp-five.vercel.app" target="_blank" rel="noopener noreferrer">
             <Button className="button-primary">
               Try Now
             </Button>
@@ -65,7 +65,7 @@ const Navbar = () => {
             >
               About
             </a>
-            <a href="https://vibecode-mvp.onrender.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://vibe-code-mvp-five.vercel.app" target="_blank" rel="noopener noreferrer">
               <Button className="button-primary w-full">
                 Try Now
               </Button>

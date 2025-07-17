@@ -38,7 +38,7 @@ const Footer = () => {
                 <Github size={20} />
               </a>
               <a 
-                href="https://youtube.com/BENi-Aditya" 
+                href="https://www.youtube.com/@BENiTech-o8o" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="w-10 h-10 rounded-full bg-vibecode-purple flex items-center justify-center text-white hover:bg-white hover:text-vibecode-purple transition-colors border border-transparent hover:border-vibecode-purple"
@@ -46,7 +46,7 @@ const Footer = () => {
                 <Youtube size={20} />
               </a>
               <a 
-                href="https://instagram.com/aditya.beni_" 
+                href="https://www.instagram.com/aditya.beni_/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="w-10 h-10 rounded-full bg-vibecode-purple flex items-center justify-center text-white hover:bg-white hover:text-vibecode-purple transition-colors border border-transparent hover:border-vibecode-purple"

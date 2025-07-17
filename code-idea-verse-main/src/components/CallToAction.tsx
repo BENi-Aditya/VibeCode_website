@@ -15,7 +15,7 @@ const CallToAction = () => {
               <p className="text-gray-700 dark:text-gray-300 mb-8">
                 Experience VibeCode instantly—click below to try the MVP live and see what you can build!
               </p>
-              <a href="https://vibecode-mvp.onrender.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://vibe-code-mvp-five.vercel.app" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-vibecode-purple text-white hover:bg-vibecode-purple/90 font-medium py-3 px-6">
                   Try Now
                 </Button>

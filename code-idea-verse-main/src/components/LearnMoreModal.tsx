@@ -76,7 +76,7 @@ const LearnMoreModal: React.FC<LearnMoreModalProps> = ({
                   </a>
                   
                   <a 
-                    href="https://instagram.com/aditya.beni_" 
+                    href="https://www.instagram.com/aditya.beni_/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
@@ -86,7 +86,7 @@ const LearnMoreModal: React.FC<LearnMoreModalProps> = ({
                   </a>
                   
                   <a 
-                    href="https://youtube.com/BENi-Aditya" 
+                    href="https://www.youtube.com/@BENiTech-o8o" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"

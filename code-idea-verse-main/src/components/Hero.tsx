@@ -156,7 +156,7 @@ const Hero = () => {
             </div>
             <div className={`w-full ${isMobile ? 'mt-4' : 'mt-8'}`}> 
               <a 
-                href="https://vibecode-mvp.onrender.com" 
+                href="https://vibe-code-mvp-five.vercel.app" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="block relative"
@@ -186,11 +186,11 @@ const Hero = () => {
                 className="rounded-full bg-gray-100 dark:bg-gray-800 shadow-lg p-3 hover:bg-purple-600/90 dark:hover:bg-purple-500/80 transition-colors flex items-center justify-center">
                 <Github className="h-5 w-5 md:h-6 md:w-6 text-gray-700 dark:text-gray-200" />
               </a>
-              <a href="https://instagram.com/aditya.beni_" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+              <a href="https://www.instagram.com/aditya.beni_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
                 className="rounded-full bg-gray-100 dark:bg-gray-800 shadow-lg p-3 hover:bg-pink-500/90 dark:hover:bg-pink-500/80 transition-colors flex items-center justify-center">
                 <Instagram className="h-5 w-5 md:h-6 md:w-6 text-gray-700 dark:text-gray-200" />
               </a>
-              <a href="https://youtube.com/BENi-Aditya" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
+              <a href="https://www.youtube.com/@BENiTech-o8o" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
                 className="rounded-full bg-gray-100 dark:bg-gray-800 shadow-lg p-3 hover:bg-red-500/90 dark:hover:bg-red-500/80 transition-colors flex items-center justify-center">
                 <Youtube className="h-5 w-5 md:h-6 md:w-6 text-gray-700 dark:text-gray-200" />
               </a>
